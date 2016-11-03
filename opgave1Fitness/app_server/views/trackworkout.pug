@@ -2,4 +2,22 @@ extends layout
 
 block content
     h1= title
-    p Welcome to #{title}
+    .row.list-group
+        .col-xs-12.list-group-item
+            h4
+                | Workout Name or number
+                small &nbsp;
+                span.badge.pull-right.badge-default 3 exercises
+            p.address Comment about workout
+
+            a.btn.btn-primary.btn-sm(data-toggle="collapse",data-target="#fullworkout")='Show Full Workout'
+            #fullworkout.collapse WORK WORK WORK WORK WORK
+                 p they see me do the work work work work work
+            p
+                span.label.label-warning Exercise1
+                | &nbsp;
+                span.label.label-warning Exercise2
+                | &nbsp;
+                span.label.label-warning Exercise3
+                | &nbsp;
+            a.btn.btn-primary.btn-lg.pull-right(href="#DONE")='Finish workout!'
