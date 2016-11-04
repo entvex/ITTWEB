@@ -1,3 +1,80 @@
 extends layout
 
 block content
+    h1=title
+    .row.list-group
+        .col-xs-12.list-group-item
+                a(href='#',data-toggle='dropdown').dropdown-toggle select nummber of exercises
+                    b.caret
+                ul.dropdown-menu
+                    li: a(href='../addworkout/2') 2
+                    li: a(href='../addworkout/4') 4
+                    li: a(href='../addworkout/6') 6
+                    li: a(href='../addworkout/8') 8
+                    li: a(href='../addworkout/10') 10
+    if exercises
+        .row.list-group
+            .col-xs-12.list-group-item
+                .col-xs-12.col-sm-3
+                    strong Exercise
+                .col-xs-12.col-sm-3
+                    Strong Description
+                .col-xs-12.col-sm-2
+                    Strong Sets
+                .col-xs-12.col-sm-2
+                    Strong &nbsp; Reps
+                .col-xs-12.col-sm-2
+                    Strong &nbsp; &nbsp; Rep type
+                form.form-horizontal(action="/location", method="get", role="form")
+                    each _ in exercises
+                        .form-group
+                            .col-xs-12.col-sm-3
+                                input.input-sm(type="text", required="true", name="ExerciseName", placeholder="squat")
+                            .col-xs-12.col-sm-3
+                                input.input-sm(type="text", required="false", name="Description", placeholder="Descripe your exercise" )
+                            .col-xs-12.col-sm-2
+                                select#rating.form-control.input-sm(name="numberOfSets")
+                                    option.disabled Sets
+                                    option 1
+                                    option 2
+                                    option 3
+                                    option 4
+                                    option 5
+                                    option 6
+                                    option 7
+                                    option 8
+                                    option 9
+                                    option 10
+                            .col-xs-12.col-sm-2
+                                select#rating.form-control.input-sm(name="numberOfReps")
+                                    option 1
+                                    option 2
+                                    option 3
+                                    option 4
+                                    option 5
+                                    option 6
+                                    option 7
+                                    option 8
+                                    option 9
+                                    option 10
+                                    option 11
+                                    option 12
+                                    option 13
+                                    option 14
+                                    option 15
+                                    option 16
+                                    option 17
+                                    option 18
+                                    option 19
+                                    option 20
+                                    option 25
+                                    option 30
+                                    option 45
+                                    option 60
+                            .col-xs-12.col-sm-2
+                                select#rating.form-control.input-sm(name="repType")
+                                    option reps
+                                    option secs
+                                    option mins
+                    .col-xs-12.col-xs-push-5
+                        a.btn.btn-primary.btn-md(href="#DONE")='Finish workout!'
