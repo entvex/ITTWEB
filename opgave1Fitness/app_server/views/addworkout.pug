@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    script var exerciseSize
     h1=title
     .row.list-group
         .col-xs-12.list-group-item
@@ -25,16 +26,15 @@ block content
                     Strong &nbsp; Reps
                 .col-xs-12.col-sm-2
                     Strong &nbsp; &nbsp; Rep type
-                form.form-horizontal(action="/location", method="get", role="form")
+                form.form-horizontal(action="/addworkout/post/2", method="post")
                     each _ in exercises
                         .form-group
                             .col-xs-12.col-sm-3
-                                input.input-sm(type="text", required="true", name="ExerciseName", placeholder="squat")
+                                input.input-sm(type="text", required="true", id ="ExerciseName", name="ExerciseName"+_, placeholder="squat")
                             .col-xs-12.col-sm-3
-                                input.input-sm(type="text", required="false", name="Description", placeholder="Descripe your exercise" )
+                                input.input-sm(type="text", required="false",id ="Description", name="Description"+_, placeholder="Descripe your exercise" )
                             .col-xs-12.col-sm-2
-                                select#rating.form-control.input-sm(name="numberOfSets")
-                                    option.disabled Sets
+                                select#rating.form-control.input-sm(name="numberOfSets"+_)
                                     option 1
                                     option 2
                                     option 3
@@ -46,7 +46,7 @@ block content
                                     option 9
                                     option 10
                             .col-xs-12.col-sm-2
-                                select#rating.form-control.input-sm(name="numberOfReps")
+                                select#rating.form-control.input-sm(name="numberOfReps"+_)
                                     option 1
                                     option 2
                                     option 3
@@ -72,9 +72,13 @@ block content
                                     option 45
                                     option 60
                             .col-xs-12.col-sm-2
-                                select#rating.form-control.input-sm(name="repType")
+                                select#rating.form-control.input-sm(name="repType"+_)
                                     option reps
                                     option secs
-                                    option mins
-                    .col-xs-12.col-xs-push-5
-                        a.btn.btn-primary.btn-md(href="#DONE")='Finish workout!'
+                                    option min
+                    .col-xs-12
+                        p &nbsp;
+                        .col-xs-12.col-sm-3
+                            input.input-sm(type="text", required="true", name="workoutName", placeholder="Workout Title")
+                        .col-xs-12.col-sm-9
+                            button.btn.btn-primary.btn-md(type="submit")='Submit workout!'

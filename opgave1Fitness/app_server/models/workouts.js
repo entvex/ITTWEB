@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var workOutSchema = new mongoose.Schema({
+var exerciseSchema = new mongoose.Schema({
     exerciseName: {type: String, require: true},
     exerciseDescription: String,
     sets: {type: Number,"default":1, min: 1,max: 10},
@@ -8,4 +8,10 @@ var workOutSchema = new mongoose.Schema({
     repType: String
 });
 
-mongoose.model('Workouts', workOutSchema);
+var workOutSchema = new mongoose.Schema({
+    workoutName: String,
+    exercises: [exerciseSchema],
+    finished: {type: Boolean,"default":false}
+});
+
+var dataModel = mongoose.model('Workouts', workOutSchema);

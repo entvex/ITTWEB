@@ -11,6 +11,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/addworkout',ctrlAddWorkout.addWorkout);
 router.get('/addworkout/:exerciseNumber',ctrlAddWorkout.addWorkoutWithParam);
+
+router.post('/addworkout/post/:exerciseNumber',ctrlAddWorkout.postWorkout);
+
 router.get('/trackworkout',ctrltrackWorkout.trackWorkout);
 
 module.exports = router;
