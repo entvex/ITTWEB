@@ -15,5 +15,6 @@ router.get('/addworkout/:exerciseNumber',ctrlAddWorkout.addWorkoutWithParam);
 router.post('/addworkout/post/:exerciseNumber',ctrlAddWorkout.postWorkout);
 
 router.get('/trackworkout',ctrltrackWorkout.trackWorkout);
+router.post('/trackworkout/post/:workoutName',ctrltrackWorkout.postTrackworkout);
 
 module.exports = router;

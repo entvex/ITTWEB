@@ -42,3 +42,4 @@ module.exports.postWorkout = function (req,res) {
 
     res.redirect("/");
 };
+

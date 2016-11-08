@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 var dbURI    = 'mongodb://localhost/opgave1Fitness';
+mongoose.Promise = global.Promise; // added to fix DeprecationWarning
+mongoose.connect(dbURI);
+
 
 // CAPTURE APP TERMINATION / RESTART EVENTS
 // To be called when process is restarted or terminated
