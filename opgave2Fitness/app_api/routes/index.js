@@ -3,14 +3,12 @@ var router = express.Router();
 var ctrlWorkout   = require('../controllers/workouts');
 var ctrlAuthentication = require('../controllers/authentication');
 
-
-
 //// Workouts
 //Get all workouts
 router.get('/workouts',ctrlWorkout.getWorkouts);
 
 //adds a workout
-router.post('/addworkout/:exerciseNumber',ctrlWorkout.postWorkout);
+router.post('/workouts/:exerciseNumber',ctrlWorkout.postWorkout);
 
 // Updates a workout to be completed.
 router.patch('/workouts/:workoutName',ctrlWorkout.pathWorkout);

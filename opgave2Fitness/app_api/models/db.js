@@ -19,4 +19,7 @@ process.once('SIGUSR2', function() {
     });
 });
 
+
+//Load the schemas
 require('./workouts');
+require('./users');

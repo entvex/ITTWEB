@@ -34,9 +34,9 @@ module.exports.pathWorkout = function (req,res) {
 module.exports.postWorkout = function (req,res) {
     console.log("posting data");
 
-    if (  req.params.exerciseNumber)
+    if ( (!isNaN(parseFloat(req.params.exerciseNumber)) && isFinite(req.params.exerciseNumber))  && req.body.workoutName)
     {
-        var exercisesArray = []
+        var exercisesArray = [];
 
         for (var i = 0; i < Number(req.params.exerciseNumber);i++ )
         {
@@ -46,7 +46,7 @@ module.exports.postWorkout = function (req,res) {
                 sets: req.body['numberOfSets' + i],
                 reps: req.body['numberOfReps' + i],
                 repType: req.body['repType' + i]
-            }
+            };
             exercisesArray.push(exerciseItem);
         }
         console.log(exercisesArray);
@@ -57,13 +57,17 @@ module.exports.postWorkout = function (req,res) {
         };
 
         var data = dataModel(workoutItem);
-        dataModel.save(function () {
+        data.save(function (err) {
             if (err)
             {
-                jsonHelper.sendJsonResponse(res, 404, err);
+                jsonHelper.sendJsonResponse(res, 400, err);
             } else {
                 jsonHelper.sendJsonResponse(res, 200, "");
             }
         });
+    }
+    else
+    {
+        jsonHelper.sendJsonResponse(res, 400, {message : "Some of the posted data is missing"});
     }
 };
