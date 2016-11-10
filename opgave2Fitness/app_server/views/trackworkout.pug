@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1= title
+    each _ in workouts
+        .row.list-group
+            .col-xs-12.list-group-item
+                h4
+                    | #{_.workoutName}
+                    small &nbsp;
+                    span.badge.pull-right.badge-default #{_.exercises.length} Exercises
+                if ( _.finished )
+                    p Workout completed
+
+                a.btn.btn-primary.btn-sm(data-toggle="collapse",data-target="#fullworkout" + _.workoutName)='Show Full Workout'
+                div(id="fullworkout" + _.workoutName).collapse
+                    each exercise in _.exercises
+                        .col-xs-12.col-sm-3
+                            p #{exercise.exerciseName}
+                        .col-xs-12.col-sm-3
+                            p #{exercise.exerciseDescription}
+                        .col-xs-12.col-sm-3
+                            p #{exercise.sets} set
+                        .col-xs-12.col-sm-3
+                            p #{exercise.reps} #{exercise.repType}
+                p
+                    each exercise in _.exercises
+                        span.label.label-warning #{exercise.exerciseName}
+                        | &nbsp;
+                form(action="/trackworkout/post/"+ _.workoutName ,method="post")
+                    button.btn.btn-primary.btn-md.pull-right(type="submit")='Finish workout!'
