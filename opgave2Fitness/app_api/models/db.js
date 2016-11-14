@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbURI    = 'mongodb://localhost/opgave1Fitness';
+var dbURI    = 'mongodb://baggerfisk:baggerfisk@ds149557.mlab.com:49557/powerprogress';
 mongoose.Promise = global.Promise; // added to fix DeprecationWarning
 mongoose.connect(dbURI);
 

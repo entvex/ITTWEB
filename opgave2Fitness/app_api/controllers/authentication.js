@@ -22,10 +22,10 @@ module.exports.newUser = function (req,res) {
         {
             jsonHelper.sendJsonResponse(res, 404, err);
         } else {
-            user = user.generateJwt();
+            token = user.generateJwt();
             jsonHelper.sendJsonResponse(res, 200, {"token" : token});
         }
-    });
+    })
 };
 
 module.exports.login = function (req,res) {

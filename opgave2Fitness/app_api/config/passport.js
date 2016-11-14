@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
 
             //Checks the user for a valid password
             if (!user.validPassword(password)) {
-                return done(null, false, {message: 'Wrong username.'});
+                return done(null, false, {message: 'Wrong password.'});
             }
 
             return done(null, user);
