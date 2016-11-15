@@ -5,14 +5,19 @@ var dataModel = mongoose.model('Workouts');
 
 module.exports.getWorkouts = function (req, res) {
     console.log('Getting data from web api');
-    mongoose.model('Workouts').find().exec(function (err, data) {
-        if (err) {
-            jsonHelper.sendJsonResponse(res, 400, err);
-        }
-        else {
-            jsonHelper.sendJsonResponse(res,200,data);
-        }
-    })
+    console.log(req.params.email);
+
+    if( req.params.email )
+    {
+        dataModel.find( {email: req.params.email} ).exec(function (err, data) {
+            if (err) {
+                jsonHelper.sendJsonResponse(res, 400, err);
+            }
+            else {
+                jsonHelper.sendJsonResponse(res,200,data);
+            }
+        });
+    }
 };
 
 module.exports.pathWorkout = function (req,res) {
@@ -34,7 +39,7 @@ module.exports.pathWorkout = function (req,res) {
 module.exports.postWorkout = function (req,res) {
     console.log("posting data");
 
-    if ( (!isNaN(parseFloat(req.params.exerciseNumber)) && isFinite(req.params.exerciseNumber))  && req.body.workoutName)
+    if ( (!isNaN(parseFloat(req.params.exerciseNumber)) && isFinite(req.params.exerciseNumber))  && req.body.workoutName && req.body.email)
     {
         var exercisesArray = [];
 
@@ -52,6 +57,7 @@ module.exports.postWorkout = function (req,res) {
         console.log(exercisesArray);
 
         var workoutItem = {
+            email: req.body.email,
             workoutName: req.body.workoutName,
             exercises: exercisesArray
         };

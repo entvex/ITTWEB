@@ -9,6 +9,7 @@ var exerciseSchema = new mongoose.Schema({
 });
 
 var workOutSchema = new mongoose.Schema({
+    email: {type: String, require: true},
     workoutName: String,
     exercises: [exerciseSchema],
     finished: {type: Boolean,"default":false}

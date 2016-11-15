@@ -7,7 +7,7 @@ var ctrlAuthentication = require('../controllers/authentication');
 
 //// Workouts
 //Get all workouts
-router.get('/workouts',auth,ctrlWorkout.getWorkouts);
+router.get('/workouts/:email',auth,ctrlWorkout.getWorkouts);
 
 //adds a workout
 router.post('/workouts/:exerciseNumber',auth,ctrlWorkout.postWorkout);
