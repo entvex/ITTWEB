@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { TrackworkoutComponent } from './trackworkout/trackworkout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TrackworkoutComponent
   ],
   imports: [
     BrowserModule,
