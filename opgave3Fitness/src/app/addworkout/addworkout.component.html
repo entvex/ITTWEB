@@ -1,0 +1,17 @@
+<div class="container">
+  <script>
+    var exerciseSize
+  </script>
+  <h1>Add Workout</h1>
+  <div class="row list-group">
+    <div class="col-xs-12 list-group-item">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">select nummber of exercises<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li *ngFor="let nummber of this.exerciesNumbers">
+          <a routerLink="{{nummber}}" >{{nummber}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -5,16 +5,30 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TrackworkoutComponent } from './trackworkout/trackworkout.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddworkoutComponent } from './addworkout/addworkout.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {appRoutingModule} from "./app-routing.module";
+import { MainComponent } from './main/main.component';
+import { AddworkoutListComponent } from './addworkout-list/addworkout-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrackworkoutComponent
+    TrackworkoutComponent,
+    NavbarComponent,
+    AddworkoutComponent,
+    LoginComponent,
+    RegisterComponent,
+    MainComponent,
+    AddworkoutListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    appRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
