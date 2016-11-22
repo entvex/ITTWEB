@@ -2,6 +2,7 @@ import { Component, OnInit ,OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 
+
 @Component({
   selector: 'app-addworkout-list',
   templateUrl: './addworkout-list.component.html',
