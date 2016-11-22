@@ -1,19 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {WebapiService} from "./webapi.service";
+import {AuthenticationService} from "./Authentication.Service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [WebapiService]
+  providers: [AuthenticationService]
 })
 export class AppComponent implements OnInit {
-
-  constructor(private webapiService: WebapiService) { }
-
   ngOnInit(): void {
-    this.webapiService.GetdataTest();
   }
+
+  constructor() { }
 
   title = 'app works!';
 }

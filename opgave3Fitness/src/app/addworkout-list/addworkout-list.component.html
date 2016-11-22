@@ -15,30 +15,30 @@
     <strong>&nbsp; &nbsp; Rep type</strong>
   </div>
   <form class="form-horizontal" method="post">
-    <div >
-    <div class="form-group">
+    <div *ngIf="this.dataReady" >
+    <div class="form-group" *ngFor="let workouts of this.numberOfExercises">
       <div class="col-xs-12 col-sm-3">
-        <input class="input-sm" name="ExerciseName0" placeholder="squat" required="true" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;" type="text">
+        <input class="input-sm" name="ExerciseName{{workouts}}" placeholder="squat" required="true" type="text">
       </div>
       <div class="col-xs-12 col-sm-3">
-        <input class="input-sm" name="Description0" placeholder="Descripe your exercise" required="false" type="text">
+        <input class="input-sm" name="Description{{workouts}}" placeholder="Descripe your exercise" required="false" type="text">
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="numberOfSets0">
+        <select class="form-control input-sm" name="numberOfSets{{workouts}}">
             <option *ngFor="let item of numberOfSets">
               {{item}}
             </option>
         </select>
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="numberOfReps0">
+        <select class="form-control input-sm" name="numberOfReps{{workouts}}">
           <option *ngFor="let numbber of numberOfReps">
             {{numbber}}
           </option>
         </select>
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="repType0">
+        <select class="form-control input-sm" name="repType{{workouts}}">
           <option *ngFor="let type of repType">
             {{type}}
           </option>

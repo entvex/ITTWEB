@@ -1,5 +1,5 @@
-export class User {
-  token : String;
-  name : String;
+// signup.interface.ts
+export interface User {
+  email: string;
+  password: string;
 }
-

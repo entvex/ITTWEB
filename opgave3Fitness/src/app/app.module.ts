@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import {appRoutingModule} from "./app-routing.module";
 import { MainComponent } from './main/main.component';
 import { AddworkoutListComponent } from './addworkout-list/addworkout-list.component';
+import {AuthenticationService} from "./Authentication.Service";
 
 @NgModule({
   declarations: [
@@ -28,9 +29,10 @@ import { AddworkoutListComponent } from './addworkout-list/addworkout-list.compo
     BrowserModule,
     FormsModule,
     HttpModule,
-    appRoutingModule
+    appRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
