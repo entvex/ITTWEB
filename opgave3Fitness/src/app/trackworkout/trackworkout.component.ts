@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrackworkoutComponent implements OnInit {
 
+
+  dataReady:boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+    let number
+    for(let i=0; i < number; i++) {
+      this.Workouts.push(i);
+    }
+    this.dataReady = true;
+  }
   }
 
 }
