@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AuthenticationService {
   url: String = "http://localhost:3000/api/";
+  //url: String = "http://www.safe-brook-20517.herokuapp.com/api/";
   public token: string;
 
 
@@ -86,6 +87,34 @@ export class AuthenticationService {
 
 
           return data;
+        } else {
+          // return false to indicate failed login
+          return false;
+        }
+      }).catch(err => {
+        console.log("caught exception" + err.status);
+        return Observable.throw(err);
+      });
+  }
+
+  markWorkoutAsFinished(workoutName: string, token: string): Observable<boolean> {
+    console.log(workoutName);
+    console.log("Bearer "+ token);
+
+    // add authorization header with jwt token
+    let headers = new Headers({ 'Authorization': 'Bearer ' + token,
+      'Access-Control-Allow-Methods': 'POST, GET,PATCH, OPTIONS, DELETE, PUT',
+      'Access-Control-Allow-Origin': "http://localhost:3000/api" });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.patch(this.url + 'workouts/' + workoutName,options)
+      .map((response: Response) => {
+        // login successful if there's a jwt token in the response
+
+        let data = response.json();
+        if (data) {
+
+          return true;
         } else {
           // return false to indicate failed login
           return false;

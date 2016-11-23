@@ -17,11 +17,22 @@ export class TrackworkoutComponent implements OnInit {
 
   constructor(private webapiService: AuthenticationService) { }
 
+  finishWorkout(form: any) {
+    console.log("I AM HERE!");
+    let obj = JSON.parse(localStorage.getItem("currentUser"));
+    this.webapiService.markWorkoutAsFinished(form,obj.token).subscribe(result => {
+      console.log("patching workout");
+    }, error => {
+      if (error.status === 404){
+        console.log("Something went wrong!");
+      }
+    });
+  }
+
   ngOnInit() {
-    var obj = JSON.parse(localStorage.getItem("currentUser"));
+    let obj = JSON.parse(localStorage.getItem("currentUser"));
 
     this.webapiService.getWorkoutList(obj.username,obj.token).subscribe(result => {
-    console.log("MERPPS");
     console.log(result.toString());
 
       this.data = result;

@@ -14,31 +14,31 @@
   <div class="col-xs-12 col-sm-2">
     <strong>&nbsp; &nbsp; Rep type</strong>
   </div>
-  <form class="form-horizontal" method="post">
+  <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f.value)" [formGroup]="addWorkoutForm" class="form-horizontal" method="post">
     <div *ngIf="this.dataReady" >
     <div class="form-group" *ngFor="let workouts of this.numberOfExercises">
       <div class="col-xs-12 col-sm-3">
-        <input class="input-sm" name="ExerciseName{{workouts}}" placeholder="squat" required="true" type="text">
+        <input class="input-sm" name="ExerciseName{{workouts}}" formControlName="ExerciseName{{workouts}}" placeholder="squat" required="true" type="text">
       </div>
       <div class="col-xs-12 col-sm-3">
-        <input class="input-sm" name="Description{{workouts}}" placeholder="Descripe your exercise" required="false" type="text">
+        <input class="input-sm" name="Description{{workouts}}" formControlName="Description{{workouts}}" placeholder="Descripe your exercise" required="false" type="text">
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="numberOfSets{{workouts}}">
+        <select formControlName="numberOfSets{{workouts}}" class="form-control input-sm" name="numberOfSets{{workouts}}">
             <option *ngFor="let item of numberOfSets">
               {{item}}
             </option>
         </select>
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="numberOfReps{{workouts}}">
+        <select formControlName="numberOfReps{{workouts}}" class="form-control input-sm" name="numberOfReps{{workouts}}">
           <option *ngFor="let numbber of numberOfReps">
             {{numbber}}
           </option>
         </select>
       </div>
       <div class="col-xs-12 col-sm-2">
-        <select class="form-control input-sm" name="repType{{workouts}}">
+        <select formControlName="repType{{workouts}}" class="form-control input-sm" name="repType{{workouts}}">
           <option *ngFor="let type of repType">
             {{type}}
           </option>
@@ -49,7 +49,7 @@
     <div class="col-xs-12">
       <p>&nbsp;</p>
       <div class="col-xs-12 col-sm-3">
-        <input class="input-sm" name="workoutName" placeholder="Workout Title" required="true" type="text">
+        <input class="input-sm" formControlName="workoutName" name="workoutName" placeholder="Workout Title" required="true" type="text">
       </div>
       <div class="col-xs-12 col-sm-9">
         <button class="btn btn-primary btn-md" type="submit">Submit workout!</button>

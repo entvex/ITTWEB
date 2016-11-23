@@ -1,6 +1,7 @@
 import { Component, OnInit ,OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -11,15 +12,13 @@ import {Subscription} from "rxjs";
 export class AddworkoutListComponent implements OnInit,OnDestroy {
 
   private subscription : Subscription;
+  addWorkoutForm: FormGroup;
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
 
-  constructor(private route: ActivatedRoute)
-  {
-
-  }
+  constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
 
   numberOfSets = [1,2,3,4,5,6,7,8,9,10];
   numberOfReps = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,30,45,60];
@@ -38,5 +37,21 @@ export class AddworkoutListComponent implements OnInit,OnDestroy {
         this.dataReady = true;
       }
     )
+
+
+
+
+    this.addWorkoutForm = this.fb.group(
+
+
+    for(let i=0; i < numberOfExercises.length; i++) {
+
+      {email: [''], password:['']}
+    }
+
+    );
+
+
+
   }
 }

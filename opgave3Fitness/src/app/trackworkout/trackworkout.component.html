@@ -4,8 +4,10 @@
   <h4>{{workout.workoutName}}<small>&nbsp;</small>
   <!--  <span class="badge pull-right badge-default">#</span> -->
   </h4>
-  <a class="btn btn-primary btn-sm" data-toggle="collapse"  data-target="#fullworkout">Show Full Workout</a>
-  <div class="collapse" id="fullworkout">
+  <b>Workout Program</b>
+  <div id="fullworkout">
+
+      <p><i>workout complete: {{workout.finished}}</i></p>
     <div *ngFor="let exercise of workout.exercises">
       <div class="col-xs-12 col-sm-3"><p>{{exercise.exerciseName}}</p>
       </div><div class="col-xs-12 col-sm-3"><p> {{exercise.exerciseDescription}}</p></div>
@@ -13,8 +15,8 @@
       <div class="col-xs-12 col-sm-3"><p> {{exercise.reps}} {{exercise.repType}}</p></div>
     </div>
 
+        <button (click)="finishWorkout(workout.workoutName)" class="btn btn-primary btn-md pull-right" type="submit">Finish workout!</button>
 
-      <form action="/trackworkout/post/sadsasa" method="post"><button class="btn btn-primary btn-md pull-right" type="submit">Finish workout!</button></form>
   </div>
   <div *ngFor="let exercise of workout.exercises">
     <p><span class="label label-warning">{{exercise.exerciseName}}</span>
