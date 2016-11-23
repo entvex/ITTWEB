@@ -37,21 +37,5 @@ export class AddworkoutListComponent implements OnInit,OnDestroy {
         this.dataReady = true;
       }
     )
-
-
-
-
-    this.addWorkoutForm = this.fb.group(
-
-
-    for(let i=0; i < numberOfExercises.length; i++) {
-
-      {email: [''], password:['']}
-    }
-
-    );
-
-
-
   }
 }

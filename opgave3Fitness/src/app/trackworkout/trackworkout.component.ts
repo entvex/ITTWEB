@@ -40,8 +40,6 @@ export class TrackworkoutComponent implements OnInit {
       this.dataReady = true;
     });
     }
-
-
   }
 
 

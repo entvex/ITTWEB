@@ -9,7 +9,14 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  loggedIn: boolean = false;
+
   ngOnInit() {
+
+    let user = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(user);
+    if (user)
+      this.loggedIn = true;
   }
 
 }
