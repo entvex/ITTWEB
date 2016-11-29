@@ -1,5 +1,39 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebApplication4.ViewModels.ComponentViewModel
+
 @{
+    ViewBag.Title = "komponent";
 }
+
+<h2>Ændre komponentkategori</h2>
+
+<form asp-controller="Component" asp-action="Edit" method="post" class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 center-block">
+                <div class="form-group">
+                    <label>Select komponent til ændring</label>
+                    <br />
+                    <select asp-for="ComponentNumber" asp-items="@Model.Components" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <br />
+                    <label>SerialNo:</label>
+                    <input asp-for="SerialNo" class="form-control" />
+                    <br />
+                    <label>Admin kommentar:</label>
+                    <input asp-for="AdminComment" class="form-control" />
+                    <br />
+                    <label>SerialNo:</label>
+                    <input asp-for="Status" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Ændre komponent" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</form>

@@ -29,10 +29,28 @@ namespace WebApplication4.Controllers
 
         public IActionResult Edit()
         {
-            return View();
+            var componentList = _aesContext.Component.ToList();
+            var vm = new ComponentViewModel();
+            vm.Components = new List<SelectListItem>();
+
+            foreach (var component in componentList)
+            {
+                vm.Components.Add(new SelectListItem
+                {
+                    Text = component.SerialNo,
+                    Value = component.ComponentId.ToString()
+                });
+            }
+            return View(vm);
+            
         }
 
         public IActionResult Remove()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
         {
             return View();
         }

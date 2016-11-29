@@ -14,7 +14,7 @@ namespace WebApplication4.ViewModels
         public string AdminComment { set; get; }
 
         public List<SelectListItem> Status { set; get; }
-
+        public List<SelectListItem> Components { set; get; }
         public String SelectedStatus { set; get; }
     }
 }
