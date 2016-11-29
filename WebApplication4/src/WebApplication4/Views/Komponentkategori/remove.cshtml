@@ -1,0 +1,26 @@
+﻿@model IEnumerable<WebApplication4.Models.Category>
+
+@{
+    ViewBag.Title = "komponentkategori";
+}
+
+<h2>komponentkategori</h2>
+
+<div class="container">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8">
+        @foreach (var item in Model)
+        {
+
+            <p>@item</p>
+        }
+        
+        
+
+    </div>
+
+    <div class="col-md-2">
+    </div>
+</div>
