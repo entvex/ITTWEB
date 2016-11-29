@@ -1,0 +1,33 @@
+﻿@model WebApplication4.Models.ComponentCategoryViewModel
+
+@{
+    ViewBag.Title = "komponentkategori";
+}
+
+<h2>Ændre komponentkategori</h2>
+
+<form asp-controller="ComponentCategory" asp-action="Edit" method="post" class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 center-block">
+                <div class="form-group">
+                    <label>Select Kategori til ændring</label> 
+                    <br />
+                    <select asp-for="CategoryID" asp-items="@Model.Category" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <br/>
+                    <label>Ændring</label>
+                    <input asp-for="NameChange" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Ændre komponentkategori" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</form>

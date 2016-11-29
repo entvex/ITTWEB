@@ -1,0 +1,28 @@
+﻿@model WebApplication4.Models.ComponentCategoryViewModel
+
+@{
+    ViewBag.Title = "komponentkategori";
+}
+
+<h2>komponentkategori</h2>
+
+<form asp-controller="ComponentCategory" asp-action="Remove" method="post" class="form-horizontal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 center-block">
+                <div class="form-group">
+                    <select asp-for="CategoryID" asp-items="@Model.Category" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Fjern komponentkategori" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</form>

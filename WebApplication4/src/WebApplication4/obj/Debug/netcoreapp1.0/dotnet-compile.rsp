@@ -203,9 +203,12 @@
 --resource:"D:\github\ITTWEB\WebApplication4\src\WebApplication4\obj\Debug\netcoreapp1.0\WebApplication4dotnet-compile.deps.json",WebApplication4.deps.json
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Program.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Startup.cs
+D:\github\ITTWEB\WebApplication4\src\WebApplication4\Controllers\ComponentCategoryController.cs
+D:\github\ITTWEB\WebApplication4\src\WebApplication4\Controllers\ComponentController.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Controllers\HomeController.cs
-D:\github\ITTWEB\WebApplication4\src\WebApplication4\Controllers\komponentkategoriController.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Migrations\20161128134611_MyFirstMigration.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Migrations\20161128134611_MyFirstMigration.Designer.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Migrations\AesContextModelSnapshot.cs
 D:\github\ITTWEB\WebApplication4\src\WebApplication4\Models\Model.cs
+D:\github\ITTWEB\WebApplication4\src\WebApplication4\ViewModels\ComponentCategoryViewModel.cs
+D:\github\ITTWEB\WebApplication4\src\WebApplication4\ViewModels\ComponentViewModel.cs
