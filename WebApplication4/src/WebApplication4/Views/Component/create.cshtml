@@ -9,33 +9,43 @@
 <form asp-controller="Component" asp-action="Create" method="post" class="form-horizontal" role="form">
     <div class="form-horizontal">
         <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label class="col-md-2 control-label"></label>
-            <div class="col-md-1">
-                <label>Komponent nummer </label>
-                <input asp-for="ComponentNumber" class="form-control"/>
-                <span class="text-danger"></span>
-            </div>
-            <div class="col-md-1">
-                <label>Komponent serie nummer </label>
-                <input asp-for="SerialNo" class="form-control" />
-                <span class="text-danger"></span>
-            </div>
-            <div class="col-md-1">
-                <label>Komponent serie nummer </label>
-                <input asp-for="AdminComment" class="form-control" />
-                <span class="text-danger"></span>
-            </div>
-            <div class="col-md-1">
-                <label>Kompoent status</label>
-                <select asp-for="Status" asp-items="@Model.Status" class="dropdown">
-                    <option>Please select one</option>
-                </select>
-                <span class="text-danger"></span>
+        <div class="form-group"> 
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Komponent nummer </label>
+                    <input asp-for="ComponentNumber" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Komponent serie nummer </label>
+                    <input asp-for="SerialNo" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Admin kommentar </label>
+                    <input asp-for="AdminComment" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Kompoent status</label> <br />
+                    <select asp-for="SelectedStatus" asp-items="@Model.Status" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-3">
+                    <label>KompoentType</label> <br />
+                    <select asp-for="SelectedComponentType" asp-items="@Model.ComponentTypeSelectListItems" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-5 col-md-12">
                 <input type="submit" value="Opret" class="btn btn-default" />
             </div>
         </div>

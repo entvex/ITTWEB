@@ -15,7 +15,12 @@
                 <div class="form-group">
                     <label>Select komponent til ændring</label>
                     <br />
-                    <select asp-for="ComponentNumber" asp-items="@Model.Components" class="dropdown">
+                    <select asp-for="SelectedComponent" asp-items="@Model.Components" class="form-control">
+                        <option>Please select one</option>
+                    </select>
+                    <br />
+                    <label>Status:</label>
+                    <select asp-for="SelectedStatus" asp-items="@Model.Status" class="form-control">
                         <option>Please select one</option>
                     </select>
                     <br />
@@ -26,7 +31,12 @@
                     <input asp-for="AdminComment" class="form-control" />
                     <br />
                     <label>SerialNo:</label>
-                    <input asp-for="Status" class="form-control" />
+                    <input asp-for="SerialNo" class="form-control" />
+                    <label>KompoentType</label> <br />
+                    <select asp-for="SelectedComponentType" asp-items="@Model.ComponentTypeSelectListItems" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Ændre komponent" class="btn btn-default" />

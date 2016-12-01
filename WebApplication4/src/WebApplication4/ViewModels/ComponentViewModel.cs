@@ -15,6 +15,12 @@ namespace WebApplication4.ViewModels
 
         public List<SelectListItem> Status { set; get; }
         public List<SelectListItem> Components { set; get; }
-        public String SelectedStatus { set; get; }
+        public string SelectedStatus { set; get; }
+        public string SelectedComponent { set; get; }
+
+
+        public List<SelectListItem> ComponentTypeSelectListItems { set; get; }
+
+        public string SelectedComponentType { set; get; }
     }
 }

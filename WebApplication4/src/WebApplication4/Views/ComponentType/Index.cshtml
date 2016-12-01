@@ -1,0 +1,73 @@
+﻿@model WebApplication4.ViewModels.ComponentTypeViewModel
+
+@{
+    ViewBag.Title = "Komponent Type";
+}
+
+<h2>Tilføj Kompoent</h2>
+
+<form asp-controller="ComponentType" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Komponent navn </label>
+                    <input asp-for="ComponentName" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Komponent info </label>
+                    <input asp-for="ComponentInfo" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>lokation </label>
+                    <input asp-for="Location" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Komponent Type Status</label> <br />
+                    <select asp-for="SelectedStatus" asp-items="@Model.ComponentStatuSelectListItems" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Datablad </label>
+                    <input asp-for="Datasheet" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>billede addresse </label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>producent </label>
+                    <input asp-for="Manufacturer" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>wiki link </label>
+                    <input asp-for="WikiLink" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>admin kommentar </label>
+                    <input asp-for="AdminComment" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-12">
+                <input type="submit" value="Opret" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
