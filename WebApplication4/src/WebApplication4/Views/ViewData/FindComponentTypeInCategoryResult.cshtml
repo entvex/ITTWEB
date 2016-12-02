@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication4.Models.Category.ComponentType>
+
+@{
+    ViewBag.Title = "Se resultatet af søgning på componenter i en given component type";
+}
+
+<h2>Find Komponent Type i compoent katagori</h2>
+
+<div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label>Komponent navn</label>
+        </div>
+        <div class="col-md-2">
+            <label>Info </label>
+        </div>
+        <div class="col-md-2">
+            <label>WikiLink </label>
+        </div>
+        <div class="col-md-2">
+            <label>Lokation</label>
+        </div>
+        <div class="col-md-2">
+            <label>fremstillet af</label>
+        </div>
+        <div class="col-md-2">
+            <label>admin kommentar</label>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <p>@item.ComponentName</p>
+            </div>
+            <div class="col-md-2">
+                <p>@item.ComponentInfo</p>
+            </div>
+            <div class="col-md-2">
+                <p>@item.WikiLink</p>
+            </div>
+            <div class="col-md-2">
+                <p>@item.Location</p>
+            </div>
+            <div class="col-md-2">
+                <p>@item.Manufacturer</p>
+            </div>
+            <div class="col-md-2">
+                <p>@item.AdminComment</p>
+            </div>
+        </div>
+    }
+</div>

@@ -1,10 +1,10 @@
 ﻿@model WebApplication4.ViewModels.ComponentTypeViewModel
 
 @{
-    ViewBag.Title = "Komponent Type";
+    ViewBag.Title = "Tilføj KomponentType";
 }
 
-<h2>Tilføj Kompoent</h2>
+<h2>Tilføj KomponentType</h2>
 
 <form asp-controller="ComponentType" asp-action="Create" method="post" class="form-horizontal" role="form">
     <div class="form-horizontal">
@@ -60,6 +60,13 @@
                 <div class="col-md-3">
                     <label>admin kommentar </label>
                     <input asp-for="AdminComment" class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label>Tilhørende kategori</label> <br />
+                    <select asp-for="SelectedCategoryId" asp-items="@Model.CategorySelectListItems" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
                     <span class="text-danger"></span>
                 </div>
             </div>

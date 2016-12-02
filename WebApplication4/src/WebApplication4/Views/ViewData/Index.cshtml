@@ -1,0 +1,21 @@
+﻿@model WebApplication4.Models.Category
+
+@{
+    ViewBag.Title = "Se data";
+}
+
+<h2>komponentkategori</h2>
+
+<div class="container">
+    <div class="col-md-4">
+        <a asp-action="FindCompoentInComponentType">Find Komponent i komponent Type</a>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-action="FindComponentTypeInCategory"> Find komponentType i komponentkategori </a>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-action="SearchComponent">Søg komponent</a>
+    </div>
+</div>

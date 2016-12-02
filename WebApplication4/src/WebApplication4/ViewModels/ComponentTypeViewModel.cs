@@ -21,7 +21,9 @@ namespace WebApplication4.ViewModels
 
         public string SelectedStatus { get; set; }
 
+        public List<SelectListItem> CategorySelectListItems { set; get; }
 
+        public string SelectedCategoryId { get; set; }
 
     }
 }

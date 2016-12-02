@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication4</title>
+    <title>@ViewData["Title"]</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication4</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ITTWEB opagve 4</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -34,7 +34,7 @@
                     <li><a asp-area="" asp-controller="Component" asp-action="Index">Komponent</a></li>
                     <li><a asp-area="" asp-controller="ComponentCategory" asp-action="index">Komponentkategori</a></li>
                     <li><a asp-area="" asp-controller="ComponentType" asp-action="index">Tilføj KomponentType</a></li>
-
+                    <li><a asp-area="" asp-controller="ViewData" asp-action="index">Se data</a></li>
                 </ul>
             </div>
         </div>
@@ -43,7 +43,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2016 - WebApplication4</p>
+            <p>&copy; David Jensen & Kasper Torp 2016 - ITTWEB opagve 4 asp net core MVC</p>
         </footer>
     </div>
 

@@ -19,6 +19,7 @@ namespace WebApplication4.Models
         public DbSet<Category.ComponentType> ComponentType { get; set; }
         public DbSet<Category.Component> Component { get; set; }
         public DbSet<Category.ESImage> EsImage { get; set; }
+        public DbSet<CategoryComponentType> CategoryComponentType { get; set; }
     }
 
     public class CategoryComponentType

@@ -1,0 +1,31 @@
+﻿
+    @model WebApplication4.ViewModels.FindComponentTypeInCategory
+
+    @{
+        ViewBag.Title = "Find Komponent Type i compoent katagori";
+    }
+
+    <h2>Find KomponentType i Kategorier</h2>
+
+    <form asp-controller="ViewData" asp-action="FindComponentTypeInCategoryResult" method="post" class="form-horizontal" role="form">
+        <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Komponent Type Status</label> <br />
+                    <select asp-for="SelectCategoryId" asp-items="@Model.CategorySelectListItems" class="dropdown">
+                        <option>Please select one</option>
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-12">
+                        <input type="submit" value="find" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>

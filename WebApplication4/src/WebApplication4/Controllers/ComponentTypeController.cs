@@ -25,7 +25,16 @@ namespace WebApplication4.Controllers
 
             var vm = new ComponentTypeViewModel();
             vm.ComponentStatuSelectListItems = new List<SelectListItem>();
+            vm.CategorySelectListItems = new List<SelectListItem>();
 
+            foreach (var Category in _aesContext.Category)
+            {
+                vm.CategorySelectListItems.Add(new SelectListItem
+                {
+                    Text = Category.Name,
+                    Value = Category.CategoryId.ToString()
+                });
+            }
 
             foreach (String status in Enum.GetNames(typeof(Category.ComponentTypeStatus)))
             {
@@ -56,8 +65,31 @@ namespace WebApplication4.Controllers
                 Manufacturer = vm.Manufacturer,
                 WikiLink = vm.WikiLink,
                 AdminComment = vm.AdminComment
+                
+            });
+            _aesContext.SaveChanges();
+
+            //Make link between type and category
+
+            var findCompoentType = from b in _aesContext.ComponentType
+                where b.ComponentName == vm.ComponentName
+                select b;
+
+            var findCatagory = from b in _aesContext.Category
+                where b.CategoryId == int.Parse(vm.SelectedCategoryId)
+                select b;
+
+
+            _aesContext.CategoryComponentType.Add(new CategoryComponentType
+            {
+                Category = findCatagory.FirstOrDefault(),
+                CategoryId = findCatagory.FirstOrDefault().CategoryId,
+
+                ComponentType = findCompoentType.FirstOrDefault(),
+                ComponentTypesId = int.Parse(findCompoentType.FirstOrDefault().ComponentTypeId.ToString())
 
             });
+
             _aesContext.SaveChanges();
             return RedirectToAction("Index");
 
