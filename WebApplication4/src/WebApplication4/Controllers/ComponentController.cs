@@ -72,6 +72,11 @@ namespace WebApplication4.Controllers
 
         public IActionResult Create()
         {
+            return View(CreateComponentViewModel());
+        }
+
+        private ComponentViewModel CreateComponentViewModel()
+        {
             var vm = new ComponentViewModel();
             vm.Status = new List<SelectListItem>();
             vm.ComponentTypeSelectListItems = new List<SelectListItem>();
@@ -93,36 +98,49 @@ namespace WebApplication4.Controllers
                     Value = componentType.ComponentTypeId.ToString()
                 });
             }
-
-
-
-            return View(vm);
+            return vm;
         }
 
 
         [HttpPost]
         public IActionResult Create(ComponentViewModel vm)
         {
-            if (!string.IsNullOrWhiteSpace(vm.ComponentNumber.ToString()))
-            {               
-
-                    Category.ComponentStatus choosenComponentStatus;
-                    Enum.TryParse(vm.SelectedStatus, out choosenComponentStatus);
-
-                    _aesContext.Component.Add(new Category.Component
-                    {
-                        AdminComment = vm.AdminComment,
-                        ComponentNumber = vm.ComponentNumber,
-                        SerialNo = vm.SerialNo,
-                        Status = choosenComponentStatus,
-                        ComponentTypeId = long.Parse( vm.SelectedComponentType)
-
-                    });
-                    _aesContext.SaveChanges();
-                    return RedirectToAction("Index");
-                
+            if (string.IsNullOrWhiteSpace(vm.SerialNo))
+            {
+                ModelState.AddModelError(nameof(vm.SerialNo),"tast et komponet serial nummer");
             }
-            return View();
+
+
+            int parseResult;
+            int.TryParse(vm.ComponentNumber.ToString(), out parseResult);
+            if (parseResult <= 0)
+            {
+                ModelState.AddModelError(nameof(vm.SerialNo), "tast et positiv komponet component nummer");
+            }
+
+            if (ModelState.IsValid)
+            {
+                Category.ComponentStatus choosenComponentStatus;
+                Enum.TryParse(vm.SelectedStatus, out choosenComponentStatus);
+
+                _aesContext.Component.Add(new Category.Component
+                {
+                    AdminComment = vm.AdminComment,
+                    ComponentNumber = vm.ComponentNumber,
+                    SerialNo = vm.SerialNo,
+                    Status = choosenComponentStatus,
+                    ComponentTypeId = long.Parse(vm.SelectedComponentType)
+
+                });
+
+                _aesContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //Stay on page and try again.
+                return View(CreateComponentViewModel());
+            }
         }
 
     }

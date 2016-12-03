@@ -8,6 +8,7 @@ namespace WebApplication4.ViewModels
 {
     public class ComponentViewModel
     {
+
         public int ComponentId { set; get; }
         public int ComponentNumber { set; get; }
         public string SerialNo { set; get; }
