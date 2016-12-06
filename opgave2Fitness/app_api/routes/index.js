@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let jwt = require('express-jwt');
+var jwt = require('express-jwt');
 var auth = jwt({secret : "safe",userProperty : 'payload'});
 var ctrlWorkout   = require('../controllers/workouts');
 var ctrlAuthentication = require('../controllers/authentication');

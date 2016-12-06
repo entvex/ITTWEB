@@ -119,9 +119,7 @@ export class AuthenticationService {
     console.log("Bearer "+ token);
 
     // add authorization header with jwt token
-    let headers = new Headers({ 'Authorization': 'Bearer ' + token,
-      'Access-Control-Allow-Methods': 'POST, GET,PATCH, OPTIONS, DELETE, PUT',
-      'Access-Control-Allow-Origin': "http://localhost:3000/api" });
+    let headers = new Headers({ 'Authorization': 'Bearer ' + token });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.patch(this.url + 'workouts/' + workoutName,options)

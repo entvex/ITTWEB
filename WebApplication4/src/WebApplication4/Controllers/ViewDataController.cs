@@ -9,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication4.Models;
 using WebApplication4.ViewModels;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebApplication4.Controllers
 {
     public class ViewDataController : Controller

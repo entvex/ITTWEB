@@ -26,6 +26,9 @@ export class TrackworkoutComponent implements OnInit {
       if (error.status === 404){
         console.log("Something went wrong!");
       }
+      if (error.status === 401){
+        console.log("Unauthorized");
+      }
     });
   }
 
