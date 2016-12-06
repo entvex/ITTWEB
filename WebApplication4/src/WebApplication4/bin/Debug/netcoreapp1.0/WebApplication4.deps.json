@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "8f31de9d706ec05e832fa2d95d7f016866461a7f"
+    "signature": "e2f7af9ab4aaa75c7accfd392565b4e655b8a43f"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,7 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
+          "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
           "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
           "Microsoft.EntityFrameworkCore.Design": "1.1.0"
@@ -1288,7 +1288,7 @@
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.1.0": {
+      "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
           "Microsoft.Extensions.FileProviders.Physical": "1.0.0",
@@ -4118,10 +4118,10 @@
       "serviceable": true,
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg=="
     },
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.1.0": {
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader/14.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iVJCfMpPqZE2QaEAGT5MoEYM65l59rDSNERnZQmJDOiE+itZZ6ZP5wh+Lh9Lv0Nt1SbgvXdN3z39MM435ITldA=="
+      "sha512": "sha512-f01OAOfsctcN7gSa05qYK8AgU1E/BFeZizvszNJMXY3BMJbYSj+3+YqyLunkMSf7LN92kcl7gQsAY9FayEH3ag=="
     },
     "Microsoft.Win32.Primitives/4.3.0": {
       "type": "package",

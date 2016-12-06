@@ -59,10 +59,7 @@ namespace WebApplication4.Controllers
                     Value = component
                 });
             }
-
-
-            return View(vm);
-            
+            return View(vm);            
         }
 
         public IActionResult Remove()
@@ -142,6 +139,5 @@ namespace WebApplication4.Controllers
                 return View(CreateComponentViewModel());
             }
         }
-
     }
 }

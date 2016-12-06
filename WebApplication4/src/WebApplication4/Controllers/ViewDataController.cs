@@ -92,25 +92,8 @@ namespace WebApplication4.Controllers
     [HttpPost]
     public IActionResult FindComponentTypeInCategoryResult(FindComponentTypeInCategory vm)
     {
-        var t = _aesContext.ComponentType.ToList();
-
-        var findLinks = from b in _aesContext.CategoryComponentType
-                                 where b.CategoryId.Equals(int.Parse(vm.SelectCategoryId))
-                                 select b;
-
-        var links = findLinks.ToList();
-        var result = new List<Category.ComponentType>();
-        foreach (var component in links)
-        {
-            foreach (var type in t)
-            {
-                if (component.ComponentTypesId == type.ComponentTypeId)
-                {
-                    result.Add(type);
-                }
-            }
-        }      
-            return View(result);
+        var result = _aesContext.CategoryComponentType.Select(c => c.ComponentType).ToList();
+        return View(result);
     }
 }
 }

@@ -31,7 +31,7 @@ namespace WebApplication4
         {
             // Add framework services.
             services.AddMvc();
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.AspNetCore.NewDb;Trusted_Connection=True;";
+            var connection = @"Server=tcp:aes5.database.windows.net,1433;Initial Catalog=AES5;Persist Security Info=False;User ID=baggerfisk;Password=KappaKappa123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             services.AddDbContext<AesContext>(options => options.UseSqlServer(connection));
         }
 
