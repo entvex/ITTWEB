@@ -27,7 +27,6 @@ namespace WebApplication4.Controllers
 
         public IActionResult FindCompoentInComponentType()
         {
-
             var vm = new FindCompoentInComponentTypeViewModel();
             vm.CompoentTypeSelectListItems = new List<SelectListItem>();
 
@@ -57,7 +56,13 @@ namespace WebApplication4.Controllers
             }
 
             return View(vm);
+        }
+        [HttpPost]
+        public IActionResult FindComponentTypeInCategoryResult(FindComponentTypeInCategory vm)
+        {
+            var result = from b in _aesContext.CategoryComponentType where b.Category.CategoryId == int.Parse(vm.SelectCategoryId) select b.ComponentType;
 
+            return View(result);
         }
 
         public IActionResult SearchComponent()
@@ -80,18 +85,10 @@ namespace WebApplication4.Controllers
         public IActionResult FindCompoentInComponentTypeResult(FindCompoentInComponentTypeViewModel vm)
         {
             var result = from b in _aesContext.Component
-                where b.ComponentTypeId.Equals(long.Parse(vm.SelectCompoentTypeId))
-                select b;
+                         where b.ComponentTypeId.Equals(long.Parse(vm.SelectCompoentTypeId))
+                         select b;
 
             return View(result);
         }
-    
-
-    [HttpPost]
-    public IActionResult FindComponentTypeInCategoryResult(FindComponentTypeInCategory vm)
-    {
-        var result = _aesContext.CategoryComponentType.Select(c => c.ComponentType).ToList();
-        return View(result);
     }
-}
 }

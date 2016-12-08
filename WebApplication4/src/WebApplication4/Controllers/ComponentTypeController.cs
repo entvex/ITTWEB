@@ -86,7 +86,6 @@ namespace WebApplication4.Controllers
 
                 ComponentType = findCompoentType.FirstOrDefault(),
                 ComponentTypesId = int.Parse(findCompoentType.FirstOrDefault().ComponentTypeId.ToString())
-
             });
             _aesContext.SaveChanges();
             return RedirectToAction("Index");

@@ -31,10 +31,8 @@
                         <label>Admin kommentar:</label>
                         <input asp-for="AdminComment" class="form-control" />
                         <br />
-                        <label>SerialNo:</label>
-                        <input asp-for="SerialNo" class="form-control" />
                         <label>KompoentType</label> <br />
-                        <select asp-for="SelectedComponentType" asp-items="@Model.ComponentTypeSelectListItems" class="dropdown">
+                        <select asp-for="SelectedComponentTypeId" asp-items="@Model.ComponentTypeSelectListItems" class="dropdown">
                             <option>Please select one</option>
                         </select>
                         <span class="text-danger"></span>

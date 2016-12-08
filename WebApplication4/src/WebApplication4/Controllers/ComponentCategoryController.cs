@@ -21,8 +21,6 @@ namespace WebApplication4.Controllers
             _aesContext = aesContext;
         }
 
-
-
         public IActionResult Index()
         {
             return View();

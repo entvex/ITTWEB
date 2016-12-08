@@ -21,6 +21,6 @@ namespace WebApplication4.ViewModels
         public List<SelectListItem> ComponentTypeSelectListItems { set; get; }
         public List<SelectListItem> ComponentsSelectListItems { set; get; }
 
-        public string SelectedComponentType { set; get; }
+        public string SelectedComponentTypeId { set; get; }
     }
 }

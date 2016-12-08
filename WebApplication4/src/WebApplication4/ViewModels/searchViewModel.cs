@@ -7,7 +7,6 @@ namespace WebApplication4.ViewModels
 {
     public class searchViewModel
     {
-
         public string searchKeyword { get; set; }
     }
 }

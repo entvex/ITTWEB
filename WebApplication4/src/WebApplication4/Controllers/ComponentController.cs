@@ -27,6 +27,12 @@ namespace WebApplication4.Controllers
 
         public IActionResult Edit()
         {
+            var vm = EditComponentViewModel();
+            return View(vm);
+        }
+
+        private ComponentViewModel EditComponentViewModel()
+        {
             var componentList = _aesContext.Component.ToList();
             var vm = new ComponentViewModel();
             vm.Status = new List<SelectListItem>();
@@ -59,7 +65,31 @@ namespace WebApplication4.Controllers
                     Value = component
                 });
             }
-            return View(vm);            
+            return vm;
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ComponentViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var foundCompoent = _aesContext.Component.FirstOrDefault(b => b.ComponentId == int.Parse(vm.SelectedComponentId));
+                var foundCompoentType = _aesContext.ComponentType.FirstOrDefault(b => b.ComponentTypeId == int.Parse(vm.SelectedComponentTypeId));
+
+                foundCompoent.SerialNo = vm.SerialNo;
+                foundCompoent.AdminComment = vm.AdminComment;
+                foundCompoent.ComponentTypeId = foundCompoentType.ComponentTypeId;                               
+
+                _aesContext.Component.Update(foundCompoent);
+                _aesContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //Stay on page and try again.
+                return View(EditComponentViewModel());
+            }
         }
 
         public IActionResult Remove()
@@ -71,14 +101,15 @@ namespace WebApplication4.Controllers
 
         private ComponentViewModel RenderRemoveViewModel()
         {
+            var componentList = _aesContext.Component.ToList();
             var vm = new ComponentViewModel();
             vm.ComponentTypeSelectListItems = new List<SelectListItem>();
 
-            foreach (var component in _aesContext.Component.ToList())
+            foreach (var component in componentList)
             {
                 vm.ComponentTypeSelectListItems.Add(new SelectListItem
                 {
-                    Text = component.ComponentNumber.ToString(),
+                    Text = component.SerialNo,
                     Value = component.ComponentId.ToString()
                 });
             }
@@ -164,7 +195,7 @@ namespace WebApplication4.Controllers
                     ComponentNumber = vm.ComponentNumber,
                     SerialNo = vm.SerialNo,
                     Status = choosenComponentStatus,
-                    ComponentTypeId = long.Parse(vm.SelectedComponentType)
+                    ComponentTypeId = long.Parse(vm.SelectedComponentTypeId)
 
                 });
 
