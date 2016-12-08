@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 var dataModel = mongoose.model('Workouts');
 
-module.exports.addWorkout = function (req,res) {
+module.exports.pickNumberOfWorkouts = function (req, res) {
     res.render('addworkout', { title: 'Add Workout' });
 };
 
-module.exports.addWorkoutWithParam = function (req,res) {
+module.exports.addWorkout = function (req, res) {
     var exercisesArray = new Array(Number(req.params.exerciseNumber));
 
     for (var i = 0; i < Number(req.params.exerciseNumber);i++ )

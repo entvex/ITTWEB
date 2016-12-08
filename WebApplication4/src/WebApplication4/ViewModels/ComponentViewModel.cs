@@ -15,12 +15,11 @@ namespace WebApplication4.ViewModels
         public string AdminComment { set; get; }
 
         public List<SelectListItem> Status { set; get; }
-        public List<SelectListItem> Components { set; get; }
         public string SelectedStatus { set; get; }
-        public string SelectedComponent { set; get; }
-
+        public string SelectedComponentId { set; get; }
 
         public List<SelectListItem> ComponentTypeSelectListItems { set; get; }
+        public List<SelectListItem> ComponentsSelectListItems { set; get; }
 
         public string SelectedComponentType { set; get; }
     }

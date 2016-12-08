@@ -30,12 +30,12 @@ namespace WebApplication4.Controllers
             var componentList = _aesContext.Component.ToList();
             var vm = new ComponentViewModel();
             vm.Status = new List<SelectListItem>();
-            vm.Components = new List<SelectListItem>();
+            vm.ComponentsSelectListItems = new List<SelectListItem>();
             vm.ComponentTypeSelectListItems = new List<SelectListItem>();
 
             foreach (var component in componentList)
             {
-                vm.Components.Add(new SelectListItem
+                vm.ComponentsSelectListItems.Add(new SelectListItem
                 {
                     Text = component.SerialNo,
                     Value = component.ComponentId.ToString()
@@ -64,7 +64,25 @@ namespace WebApplication4.Controllers
 
         public IActionResult Remove()
         {
-            return View();
+            var vm = RenderRemoveViewModel();
+
+            return View(vm);
+        }
+
+        private ComponentViewModel RenderRemoveViewModel()
+        {
+            var vm = new ComponentViewModel();
+            vm.ComponentTypeSelectListItems = new List<SelectListItem>();
+
+            foreach (var component in _aesContext.Component.ToList())
+            {
+                vm.ComponentTypeSelectListItems.Add(new SelectListItem
+                {
+                    Text = component.ComponentNumber.ToString(),
+                    Value = component.ComponentId.ToString()
+                });
+            }
+            return vm;
         }
 
         public IActionResult Create()
@@ -98,6 +116,26 @@ namespace WebApplication4.Controllers
             return vm;
         }
 
+        [HttpPost]
+        public IActionResult Remove(ComponentViewModel vm)
+        {
+            if (string.IsNullOrWhiteSpace(vm.SelectedComponentId))
+            {
+                ModelState.AddModelError(nameof(vm.SelectedComponentId), "vælg en komponet");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var firstOrDefault = _aesContext.Component.FirstOrDefault(b => b.ComponentId == int.Parse(vm.SelectedComponentId));
+                _aesContext.Component.Remove(firstOrDefault);
+            }
+            else
+            {
+                //Stay on page and try again.
+                return View(RenderRemoveViewModel());
+            }
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public IActionResult Create(ComponentViewModel vm)

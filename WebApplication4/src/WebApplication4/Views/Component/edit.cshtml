@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label>Select komponent til ændring</label>
                         <br />
-                        <select asp-for="SelectedComponent" asp-items="@Model.Components" class="form-control">
+                        <select asp-for="SelectedComponentId" asp-items="@Model.ComponentsSelectListItems" class="form-control">
                             <option>Please select one</option>
                         </select>
                         <br />

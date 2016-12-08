@@ -79,7 +79,6 @@ namespace WebApplication4.Controllers
                 where b.CategoryId == int.Parse(vm.SelectedCategoryId)
                 select b;
 
-
             _aesContext.CategoryComponentType.Add(new CategoryComponentType
             {
                 Category = findCatagory.FirstOrDefault(),
@@ -89,11 +88,8 @@ namespace WebApplication4.Controllers
                 ComponentTypesId = int.Parse(findCompoentType.FirstOrDefault().ComponentTypeId.ToString())
 
             });
-
             _aesContext.SaveChanges();
             return RedirectToAction("Index");
-
- 
         }
     }
 }

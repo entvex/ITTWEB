@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/addworkout',ctrlAddWorkout.addWorkout);
-router.get('/addworkout/:exerciseNumber',ctrlAddWorkout.addWorkoutWithParam);
+router.get('/addworkout',ctrlAddWorkout.pickNumberOfWorkouts);
+router.get('/addworkout/:exerciseNumber',ctrlAddWorkout.addWorkout);
 
 router.post('/addworkout/post/:exerciseNumber',ctrlAddWorkout.postWorkout);
 
