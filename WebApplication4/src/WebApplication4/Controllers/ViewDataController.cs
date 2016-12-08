@@ -54,7 +54,6 @@ namespace WebApplication4.Controllers
                     Value = Category.CategoryId.ToString()
                 });
             }
-
             return View(vm);
         }
         [HttpPost]
@@ -78,7 +77,6 @@ namespace WebApplication4.Controllers
                          select b;
 
             return View(result);
-
         }
 
         [HttpPost]
