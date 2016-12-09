@@ -30,7 +30,7 @@ namespace WebApplication4.Controllers
             var vm = new FindCompoentInComponentTypeViewModel();
             vm.CompoentTypeSelectListItems = new List<SelectListItem>();
 
-            foreach (var componentType in _aesContext.ComponentType.ToList())
+            foreach (var componentType in _aesContext.ComponentType.AsNoTracking().ToList())
             {
                 vm.CompoentTypeSelectListItems.Add(new SelectListItem
                 {
@@ -46,7 +46,7 @@ namespace WebApplication4.Controllers
             var vm = new FindComponentTypeInCategory();
             vm.CategorySelectListItems = new List<SelectListItem>();
 
-            foreach (var Category in _aesContext.Category.ToList())
+            foreach (var Category in _aesContext.Category.AsNoTracking().ToList())
             {
                 vm.CategorySelectListItems.Add(new SelectListItem
                 {
@@ -61,7 +61,7 @@ namespace WebApplication4.Controllers
         {
             var result = from b in _aesContext.CategoryComponentType where b.Category.CategoryId == int.Parse(vm.SelectCategoryId) select b.ComponentType;
 
-            return View(result);
+            return View(result.AsNoTracking());
         }
 
         public IActionResult SearchComponent()
@@ -76,17 +76,34 @@ namespace WebApplication4.Controllers
                          where b.SerialNo.StartsWith(vm.searchKeyword)
                          select b;
 
-            return View(result);
+            return View(result.AsNoTracking());
         }
 
         [HttpPost]
         public IActionResult FindCompoentInComponentTypeResult(FindCompoentInComponentTypeViewModel vm)
         {
-            var result = from b in _aesContext.Component
-                         where b.ComponentTypeId.Equals(long.Parse(vm.SelectCompoentTypeId))
-                         select b;
+            //This was chage to improve performence 
+            /*
+            var t = _aesContext.ComponentType.ToList();
+            var findLinks = from b in _aesContext.CategoryComponentType
+                            where b.CategoryId.Equals(int.Parse(vm.SelectCategoryId))
+                            select b;
+            var links = findLinks.ToList();
+            var result = new List<Category.ComponentType>();
+            foreach (var component in links)
+            {
+                foreach (var type in t)
+                {
+                    if (component.ComponentTypesId == type.ComponentTypeId)
+                    {
+                        result.Add(type);
+                    }
+                }
+            } */
 
-            return View(result);
+            var result = from b in _aesContext.Component where b.ComponentTypeId.Equals(long.Parse(vm.SelectCompoentTypeId)) select b;
+
+            return View(result.AsNoTracking());
         }
     }
 }

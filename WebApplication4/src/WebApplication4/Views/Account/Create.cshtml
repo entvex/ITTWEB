@@ -1,0 +1,28 @@
+﻿@using System.Threading.Tasks
+@using Users.Models
+@model Users.Models.CreateModel
+
+<div class="row">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+            <h4>Opret bruger</h4>
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label>Navn</label>
+                <input asp-for="Name" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control"/>
+            </div>
+            <button type="submit" class="btn">Create</button>
+            <a asp-action="Index" class="btn">Cancel</a>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>

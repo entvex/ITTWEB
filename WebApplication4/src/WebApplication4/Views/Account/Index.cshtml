@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Bruger konti";
+}
+
+<h2>Bruger konti</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <a asp-action="Create">Opret en helt ny bruger</a>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-action="Login">Login</a>
+    </div>
+    <div class="col-md-4">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Logout">Logout</a>
+        }        
+    </div>
+</div>

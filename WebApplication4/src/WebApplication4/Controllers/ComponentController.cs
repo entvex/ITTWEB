@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication4.Models;
@@ -10,6 +11,7 @@ using WebApplication4.ViewModels;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class ComponentController : Controller
     {
 
@@ -20,6 +22,7 @@ namespace WebApplication4.Controllers
            _aesContext = aesContext;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -103,11 +106,11 @@ namespace WebApplication4.Controllers
         {
             var componentList = _aesContext.Component.ToList();
             var vm = new ComponentViewModel();
-            vm.ComponentTypeSelectListItems = new List<SelectListItem>();
+            vm.ComponentsSelectListItems = new List<SelectListItem>();
 
             foreach (var component in componentList)
             {
-                vm.ComponentTypeSelectListItems.Add(new SelectListItem
+                vm.ComponentsSelectListItems.Add(new SelectListItem
                 {
                     Text = component.SerialNo,
                     Value = component.ComponentId.ToString()
@@ -159,6 +162,7 @@ namespace WebApplication4.Controllers
             {
                 var firstOrDefault = _aesContext.Component.FirstOrDefault(b => b.ComponentId == int.Parse(vm.SelectedComponentId));
                 _aesContext.Component.Remove(firstOrDefault);
+                _aesContext.SaveChanges();
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication4.Models;
@@ -11,15 +12,15 @@ using WebApplication4.ViewModels;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class ComponentTypeController : Controller
     {
-
         private AesContext _aesContext;
-
         public ComponentTypeController(AesContext aesContext)
         {
             _aesContext = aesContext;
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
 

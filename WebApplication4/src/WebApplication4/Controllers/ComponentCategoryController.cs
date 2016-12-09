@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Cli.Utils;
@@ -11,6 +12,7 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class ComponentCategoryController : Controller
     {
 
@@ -21,6 +23,7 @@ namespace WebApplication4.Controllers
             _aesContext = aesContext;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -31,6 +34,7 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admins")]
         public IActionResult Edit()
         {
             var categoryList = _aesContext.Category.ToList();
@@ -47,7 +51,7 @@ namespace WebApplication4.Controllers
             }
             return View(vm);
         }
-
+        
         public IActionResult Remove()
         {
             var categoryList = _aesContext.Category.ToList();
