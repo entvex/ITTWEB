@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using aspnetcorewebapi.model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnetcorewebapi
 {
@@ -36,7 +38,10 @@ namespace aspnetcorewebapi
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            var connection = @"Server=tcp:webapiase.database.windows.net,1433;Initial Catalog=webApi;Persist Security Info=False;User ID=baggerfisk;Password=Kappa¤Kappa123!; MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            services.AddDbContext<AesSmallContext>(options => options.UseSqlServer(connection));
 
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -50,6 +55,12 @@ namespace aspnetcorewebapi
 
             app.UseApplicationInsightsExceptionTelemetry();
 
+            app.UseCors(builder => builder
+                .WithOrigins()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                );
             app.UseMvc();
         }
     }
