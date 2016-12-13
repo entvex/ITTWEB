@@ -10,7 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApplication4.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Users.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApplication4
 {
@@ -69,7 +71,19 @@ namespace WebApplication4
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = (context) =>
+                {
+                    var headers = context.Context.Response.GetTypedHeaders();
+                    headers.CacheControl = new CacheControlHeaderValue()
+                    {
+                        MaxAge = TimeSpan.FromSeconds(60),
+                    };
+                }
+            });
+
             app.UseIdentity();
             app.UseMvc(routes =>
             {
