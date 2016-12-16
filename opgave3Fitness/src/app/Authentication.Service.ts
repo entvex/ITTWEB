@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthenticationService {
-  url: String = "https://safe-brook-20517.herokuapp.com/api/";
+  url: String = "http://localhost:3000/api/";
   //url: String = "http://www.safe-brook-20517.herokuapp.com/api/";
   public token: string;
 
@@ -117,12 +117,13 @@ export class AuthenticationService {
   markWorkoutAsFinished(workoutName: string, token: string): Observable<boolean> {
     console.log(workoutName);
     console.log("Bearer "+ token);
-
     // add authorization header with jwt token
     let headers = new Headers({ 'Authorization': 'Bearer ' + token });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.patch(this.url + 'workouts/' + workoutName,options)
+    console.log(this.url + 'workouts/' + workoutName);
+
+    return this.http.patch(this.url + 'workouts/' + workoutName,"",options)
       .map((response: Response) => {
         let data = response.json();
         if (data) {
