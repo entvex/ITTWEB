@@ -1,0 +1,63 @@
+﻿$globalPadding: 15px;
+$imageRounding: 50%;
+$imageSize: 100px;
+$textChatPadding: 25px;
+
+
+@mixin sexy-border($color: blue, $width: 5px,$borderRounding: 25px) {
+    border: {
+        color: $color;
+        width: $width;
+    }
+    border-radius: $borderRounding;
+    background-color: fade-out($color, 0.5);
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.innerdiv {
+
+    color:rebeccapurple;
+    p{
+        font-size: 20px;
+        &:hover {
+            border-width: 1px;
+            background-color: darkorange;
+        }
+    }
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: $globalPadding;
+    padding-right: $globalPadding;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 1600px;
+}
+
+.message {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+}
+
+.img-circle {
+    border-radius: $imageRounding;
+    width: $imageSize;
+    height: $imageSize;
+}
+
+.media-body {
+    margin-left: 50%;
+    @include sexy-border(azure,5px,35px);
+    padding-left: $textChatPadding;
+}
