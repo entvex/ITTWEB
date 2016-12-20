@@ -71,7 +71,8 @@ namespace WebApplication4
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            //app.UseStaticFiles();
+            app.UseStatusCodePagesWithRedirects("/Account/Login");
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 OnPrepareResponse = (context) =>

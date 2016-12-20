@@ -36,7 +36,9 @@
     <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
-         $(function () {
+        $(function () {
+            loadExistingData();
+
              $.connection.hub.logging = true;
              var chat = $.connection.chatHub;
              chat.client.addNewMessageToPage = function (name, message, avatar) {
@@ -63,6 +65,10 @@
                  $('#sendmessage').click(function () {
 
                      if (validateData()) {
+
+                         localStorage.name = $('#chatname').val();
+                         localStorage.avatar = $('#Avatar').val();
+
                          chat.server.send($('#chatname').val(), $('#message').val(), $('#Avatar').val());
 
                          $('#chatname').hide();
@@ -81,7 +87,7 @@
 
          function validateData() {
              
-             var Extension = $('#Avatar').val().substring($('#Avatar').val().lastIndexOf('.') + 1).toLowerCase();
+             let Extension = $('#Avatar').val().substring($('#Avatar').val().lastIndexOf('.') + 1).toLowerCase();
              if (Extension == "gif" ||
                  Extension == "png" ||
                  Extension == "bmp" ||
@@ -92,6 +98,10 @@
              return false;
          }
 
+        function loadExistingData() {
+            $('#chatname').val(localStorage.name);
+            $('#Avatar').val(localStorage.avatar);
+        }
 
          function htmlEncode(value) {
              var encodedValue = $('<div />').text(value).html();
