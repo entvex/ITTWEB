@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   onSubmit(form: any) {
     this.webapiService.login(form.email,form.password).subscribe(result => {
       console.log('Username or password is correct');
+      this.webapiService.userIsloggedIn.emit(true);
       this.router.navigate(['./main']);
     }, error => {
       if (error.status === 401){

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -8,13 +8,14 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthenticationService {
-  url: String = "http://localhost:3000/api/";
-  //url: String = "http://www.safe-brook-20517.herokuapp.com/api/";
+  //url: String = "http://localhost:3000/api/";
+  url: String = "https://safe-brook-20517.herokuapp.com/api/";
   public token: string;
-
+  userIsloggedIn: EventEmitter<any>;
 
   constructor(private http: Http) {
     // set token if saved in local storage
+    this.userIsloggedIn = new EventEmitter();
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
   }
@@ -31,11 +32,12 @@ export class AuthenticationService {
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
-
+          this.userIsloggedIn.emit(true);
           // return true to indicate successful login
           return true;
         } else {
           // return false to indicate failed login
+          this.userIsloggedIn.emit(false);
           return false;
         }
       }).catch(err => {
