@@ -3,7 +3,6 @@ var dbURI    = 'mongodb://baggerfisk:baggerfisk@ds149557.mlab.com:49557/powerpro
 mongoose.Promise = global.Promise; // added to fix DeprecationWarning
 mongoose.connect(dbURI);
 
-
 // CAPTURE APP TERMINATION / RESTART EVENTS
 // To be called when process is restarted or terminated
 gracefulShutdown = function(msg, callback) {
@@ -18,8 +17,13 @@ process.once('SIGUSR2', function() {
         process.kill(process.pid, 'SIGUSR2');
     });
 });
+// for Heroku shutdown
+process.on('SIGTERM', function() {
+    gracefulShutdown('Heroku app termination', function() {
+        process.exit(0);
+    });
+});
 
-
-//Load the schemas
+//load the schma and models
 require('./workouts');
 require('./users');
