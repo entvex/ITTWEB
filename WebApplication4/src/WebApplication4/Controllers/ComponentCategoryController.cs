@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Cli.Utils;
+using Microsoft.EntityFrameworkCore;
 using WebApplication4.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,7 +38,7 @@ namespace WebApplication4.Controllers
         [Authorize(Roles = "Admins")]
         public IActionResult Edit()
         {
-            var categoryList = _aesContext.Category.ToList();
+            var categoryList = _aesContext.Category.AsNoTracking().ToList();
             var vm = new ComponentCategoryViewModel();
             vm.Category = new List<SelectListItem>();
 
@@ -54,7 +55,7 @@ namespace WebApplication4.Controllers
         
         public IActionResult Remove()
         {
-            var categoryList = _aesContext.Category.ToList();
+            var categoryList = _aesContext.Category.AsNoTracking().ToList();
             var vm = new ComponentCategoryViewModel();
             vm.Category = new List<SelectListItem>();
 

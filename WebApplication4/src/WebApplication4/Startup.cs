@@ -50,8 +50,7 @@ namespace WebApplication4
                 opts.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<AppIdentityDbContext>();
 
-            var connection = @"Server=tcp:aes5.database.windows.net,1433;Initial Catalog=AES5;Persist Security Info=False;User ID=baggerfisk;Password=KappaKappa123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            services.AddDbContext<AesContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<AesContext>(options => options.UseSqlServer(Configuration["Data:AesIdentity:ConnectionString"]));
             services.AddMvc();
         }
 
@@ -92,7 +91,7 @@ namespace WebApplication4
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
+            //AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WebApplication4.Models;
 using WebApplication4.ViewModels;
 
@@ -36,7 +37,7 @@ namespace WebApplication4.Controllers
 
         private ComponentViewModel EditComponentViewModel()
         {
-            var componentList = _aesContext.Component.ToList();
+            var componentList = _aesContext.Component.AsNoTracking().ToList();
             var vm = new ComponentViewModel();
             vm.Status = new List<SelectListItem>();
             vm.ComponentsSelectListItems = new List<SelectListItem>();
@@ -51,7 +52,7 @@ namespace WebApplication4.Controllers
                 });
             }
 
-            foreach (var componentType in _aesContext.ComponentType.ToList())
+            foreach (var componentType in _aesContext.ComponentType.AsNoTracking().ToList())
             {
                 vm.ComponentTypeSelectListItems.Add(new SelectListItem
                 {
