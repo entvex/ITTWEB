@@ -79,7 +79,7 @@ namespace WebApplication4
                     var headers = context.Context.Response.GetTypedHeaders();
                     headers.CacheControl = new CacheControlHeaderValue()
                     {
-                        MaxAge = TimeSpan.FromSeconds(60),
+                        MaxAge = TimeSpan.FromDays(90),
                     };
                 }
             });
@@ -91,6 +91,7 @@ namespace WebApplication4
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            //This was removed to improve performence and it should only run once 
             //AppIdentityDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }

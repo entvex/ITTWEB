@@ -85,11 +85,16 @@ namespace WebApplication4.Controllers
             //This was chage to improve performence 
             /*
             var t = _aesContext.ComponentType.ToList();
-            var findLinks = from b in _aesContext.CategoryComponentType
+
+            //Bad runs the query client site and not server site because of AsEnumerable
+            var findLinks = from b in _aesContext.CategoryComponentType.AsEnumerable()
                             where b.CategoryId.Equals(int.Parse(vm.SelectCategoryId))
                             select b;
+
             var links = findLinks.ToList();
+
             var result = new List<Category.ComponentType>();
+
             foreach (var component in links)
             {
                 foreach (var type in t)
