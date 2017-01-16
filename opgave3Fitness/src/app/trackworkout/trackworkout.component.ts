@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Exercise,Workout} from "../Exercise"
 import {AuthenticationService} from "../Authentication.Service"
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-trackworkout',
