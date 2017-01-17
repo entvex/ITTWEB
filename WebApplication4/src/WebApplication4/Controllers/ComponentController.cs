@@ -140,7 +140,7 @@ namespace WebApplication4.Controllers
                 });
             }
 
-            foreach (var componentType in _aesContext.ComponentType.ToList())
+            foreach (var componentType in _aesContext.ComponentType.AsNoTracking().ToList())
             {
                 vm.ComponentTypeSelectListItems.Add(new SelectListItem
                 {
