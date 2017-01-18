@@ -14,6 +14,7 @@ module.exports.getWorkouts = function (req, res) {
                 jsonHelper.sendJsonResponse(res, 400, err);
             }
             else {
+                // 200 OK Standard response for successful HTTP requests
                 jsonHelper.sendJsonResponse(res,200,data);
             }
         });
@@ -30,7 +31,8 @@ module.exports.pathWorkout = function (req,res) {
                 jsonHelper.sendJsonResponse(res, 400, err);
             }
             else {
-                jsonHelper.sendJsonResponse(res,200,"");
+                // 204 No Content The server successfully processed the request and is not returning any content.
+                jsonHelper.sendJsonResponse(res,204,"");
             }
         });
     }
@@ -68,7 +70,8 @@ module.exports.postWorkout = function (req,res) {
             {
                 jsonHelper.sendJsonResponse(res, 400, err);
             } else {
-                jsonHelper.sendJsonResponse(res, 200, "");
+                // HTTP 201 Created The request has been fulfilled, resulting in the creation of a new resource.
+                jsonHelper.sendJsonResponse(res, 201, "");
             }
         });
     }
