@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Chat";
+}
+<h2>Chat</h2>
+
+<div id="ChatHandle">
+    <div class="row">
+        <div class="input-group col-md-12">
+            <span class="input-group-addon" id="messagebox">Message:</span>
+            <input type="text" class="form-control" id="message" aria-describedby="messagebox" />
+            <span class="input-group-btn">
+                <input type="button" class="btn btn-primary" id="sendmessage" value="Send" />
+            </span>
+        </div>
+    </div>
+    <div class="row"><br /></div>
+    <div class="row">
+        <div class="input-group">
+            <span class="input-group-addon" id="NameBox">Name:</span>
+            <input type="text" class="form-control col-md-6" id="chatname" aria-describedby="NameBox" />
+            <span class="input-group-addon" id="Avatarbox">Avatar:</span>
+            <input type="text" class="form-control col-md-6" id="Avatar" aria-describedby="Avatarbox" />
+        </div>
+    </div>
+    <div class="row"><hr /></div>
+    <div class="container">
+        <div id="discussion">
+        </div>
+        
+        <p> Dette er standard P tag</p> <div class ="innerdiv"> - This is in innerdiv -<p> - this is p-tag inside the innerdiv class</p></div>
+    </div>
+</div>
+
+@section scripts {
+    
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            loadExistingData();
+
+             $.connection.hub.logging = true;
+             var chat = $.connection.chatHub;
+             chat.client.addNewMessageToPage = function (name, message, avatar) {
+                 
+                 if (name !== $('#chatname').val()) {
+                     let tempChat1 = $('#discussion').html();
+                     $('#discussion').empty();
+                     $('#discussion').append('<div class="media"><div class="media-body text-right"><h4 class="media-heading "> ' + htmlEncode(name) + '</h4>' + htmlEncode(message) + '</div><div class="media-right"><img class="media-object img-circle" src="' + avatar + '"></div></div>');
+                     $('#discussion').append(tempChat1);
+                 }
+                 else {
+                     let tempChat = $('#discussion').html();
+                     $('#discussion').empty();
+                     $('#discussion')
+                         .append('<div class="media"><div class="media-right"><img class="media-object img-circle" src="' + avatar + '"></div> <div class="media-body">    <h4 class="media-heading">' + htmlEncode(name) + '</h4>' + htmlEncode(message) + '  </div></div>');
+                   $('#discussion').append(tempChat);
+                 }
+             };
+
+             $('#chatname').focus();
+
+             $.connection.hub.start().done(function () {
+
+                 $('#sendmessage').click(function () {
+
+                     if (validateData()) {
+
+                         localStorage.name = $('#chatname').val();
+                         localStorage.avatar = $('#Avatar').val();
+
+                         chat.server.send($('#chatname').val(), $('#message').val(), $('#Avatar').val());
+
+                         $('#chatname').hide();
+                         $('#NameBox').hide();
+                         $('#Avatar').hide();
+                         $('#Avatarbox').hide();
+
+                         $('#message').val('').focus();
+                     } else {
+                         $('#Avatar').val("https://s-media-cache-ak0.pinimg.com/236x/38/f9/bb/38f9bbe66617934b3faf48e7af6b4467.jpg");
+                         $('#chatname').val("Dog_" + Math.floor((Math.random()*10) + 1));
+                     }
+                 });
+             });
+         });
+
+         function validateData() {
+             
+             let Extension = $('#Avatar').val().substring($('#Avatar').val().lastIndexOf('.') + 1).toLowerCase();
+             if (Extension == "gif" ||
+                 Extension == "png" ||
+                 Extension == "bmp" ||
+                 Extension == "jpeg" ||
+                 Extension == "jpg") {
+                 return true;
+             }
+             return false;
+         }
+
+        function loadExistingData() {
+            $('#chatname').val(localStorage.name);
+            $('#Avatar').val(localStorage.avatar);
+        }
+
+         function htmlEncode(value) {
+             var encodedValue = $('<div />').text(value).html();
+             return encodedValue;
+         }
+    </script>
+}
