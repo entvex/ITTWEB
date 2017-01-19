@@ -7,17 +7,15 @@ import {AuthenticationService} from "../Authentication.Service"
   styleUrls: ['./trackworkout.component.css']
 })
 export class TrackworkoutComponent implements OnInit {
-
-
   data: any="";
   dataReady:boolean = false;
 
   constructor(private webapiService: AuthenticationService) { }
 
-  finishWorkout(form: any) {
-    console.log("I AM HERE!");
+  finishWorkout(workOutName: any) {
+
     let obj = JSON.parse(localStorage.getItem("currentUser"));
-    this.webapiService.markWorkoutAsFinished(form,obj.token).subscribe(result => {
+    this.webapiService.markWorkoutAsFinished(workOutName,obj.token).subscribe(result => {
       console.log("patching workout");
     }, error => {
       if (error.status === 404){
@@ -41,6 +39,3 @@ export class TrackworkoutComponent implements OnInit {
     });
     }
   }
-
-
-

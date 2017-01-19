@@ -1,28 +1,32 @@
 <div *ngIf="this.dataReady">
-<div *ngFor="let workout of this.data">
-<div class="col-xs-12 list-group-item">
-  <h4>{{workout.workoutName}}<small>&nbsp;</small>
-  <!--  <span class="badge pull-right badge-default">#</span> -->
-  </h4>
-  <b>Workout Program</b>
-  <div id="fullworkout">
+  <div *ngFor="let workout of this.data">
+    <div class="col-xs-12 list-group-item">
+      <h4>{{workout.workoutName}}
+        <small>&nbsp;</small>
+        <!--  <span class="badge pull-right badge-default">#</span> -->
+      </h4>
+      <b>Workout Program</b>
+      <div id="fullworkout">
 
-      <p><i>workout complete: {{workout.finished}}</i></p>
-    <div *ngFor="let exercise of workout.exercises">
-      <div class="col-xs-12 col-sm-3"><p>{{exercise.exerciseName}}</p>
-      </div><div class="col-xs-12 col-sm-3"><p> {{exercise.exerciseDescription}}</p></div>
-      <div class="col-xs-12 col-sm-3"><p>{{exercise.sets}} sets</p></div>
-      <div class="col-xs-12 col-sm-3"><p> {{exercise.reps}} {{exercise.repType}}</p></div>
+        <p><i>workout complete: {{workout.finished}}</i></p>
+        <div *ngFor="let exercise of workout.exercises">
+          <div class="col-xs-12 col-sm-3"><p>{{exercise.exerciseName}}</p>
+          </div>
+          <div class="col-xs-12 col-sm-3"><p> {{exercise.exerciseDescription}}</p></div>
+          <div class="col-xs-12 col-sm-3"><p>{{exercise.sets}} sets</p></div>
+          <div class="col-xs-12 col-sm-3"><p> {{exercise.reps}} {{exercise.repType}}</p></div>
+        </div>
+
+        <button (click)="finishWorkout(workout.workoutName)" class="btn btn-primary btn-md pull-right" type="submit">
+          Finish workout!
+        </button>
+
+      </div>
+      <div *ngFor="let exercise of workout.exercises">
+        <p><span class="label label-warning">{{exercise.exerciseName}}</span>
+          &nbsp;</p>
+      </div>
+      <br/>
     </div>
-
-        <button (click)="finishWorkout(workout.workoutName)" class="btn btn-primary btn-md pull-right" type="submit">Finish workout!</button>
-
   </div>
-  <div *ngFor="let exercise of workout.exercises">
-    <p><span class="label label-warning">{{exercise.exerciseName}}</span>
-      &nbsp;</p>
-</div><br />
 </div>
-</div>
-  </div>
-

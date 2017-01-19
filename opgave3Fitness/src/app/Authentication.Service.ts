@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-
-
 @Injectable()
 export class AuthenticationService {
   //url: String = "http://localhost:3000/api/";
@@ -117,8 +115,7 @@ export class AuthenticationService {
   }
 
   markWorkoutAsFinished(workoutName: string, token: string): Observable<boolean> {
-    console.log(workoutName);
-    console.log("Bearer "+ token);
+
     // add authorization header with jwt token
     let headers = new Headers({ 'Authorization': 'Bearer ' + token });
     let options = new RequestOptions({ headers: headers });
